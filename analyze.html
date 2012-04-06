@@ -1,0 +1,361 @@
+﻿<html>
+<head>
+   <title>Анализ</title>
+
+    <script src="../jquery/jquery.js" type="text/javascript"></script>
+    <script src="../jquery/jquery-css-transform.js" type="text/javascript"></script>
+    <script src="../jquery/jquery-animate-css-rotate-scale.js" type="text/javascript"></script>
+
+   <style type="text/css">
+   body{
+      margin: 50px 20%;
+   }
+
+   p:first-letter{
+      margin-left: 20px;
+   }
+
+   h1,h2,h3,h4,h5,h6{
+      text-align: center;
+      color: #616161;
+   }
+
+   a{
+      text-decoration: none;
+      color: #616161;
+      font-weight: bold;
+   }
+   a:hover{
+      text-decoration: underline;
+   }
+
+   .fixed{
+      position: fixed;
+      right: 3%;
+      top: 3%;
+   }
+   </style>
+   <style type="text/css">
+   div.image{
+      background-repeat: no-repeat;
+   }
+   div.image div.line{
+      position: relative;
+   }
+   div.image div.horizontal.line{
+      border: 0px solid black;
+      border-top: 1px dotted black;
+   }
+   div.image div.vertical.line{
+      border: 0px solid black;
+      border-left: 1px dotted black;
+   }
+   div.image span.label{
+      position: relative;
+      background-color: white;
+   }
+   div.image span.label>a{
+      border-bottom: 1px dashed gray;
+      margin-left: 3px;
+   }
+   </style>
+   <style type="text/css">
+   .biche1{
+      width: 183px;
+      height: 161px;
+      background-image: url('images/biche_1.png');
+   }
+
+   div.p{
+      height: 300px;
+   }
+   div.p>p{
+      float: left;
+      width: 65%;
+      padding-top: 15%;
+   }
+
+   #i0,#i2{
+      float: right;
+      margin: 70px 0px;
+      position: relative;
+      left: 50px;
+   }
+   #i1,#i3{
+      float: left;
+      margin: 70px 0px;
+      position: relative;
+      right: 50px;
+   }
+   /*
+   #i2{
+      float: right;
+      margin: 70px 0px;
+      position: relative;
+      left: 50px;
+   }
+   #i3{
+      position: absolute;
+      top: 450px;
+      right: 3%;
+   }
+   */
+   </style>
+</head>
+<body>
+
+<h3>Тук ние се съсредоточаваме върху логическата систематизация на находките.</h3>
+
+<p>
+Търсим познавателния контекст, който определя смисъла и практическата функция на свещените символи, места и предмети. Ще се опитаме да отговорим и на въпроса имало ли е научно мислене 2 хиляди години преди Хеопсовата пирамида и Стоунхендж, 40 века преди Питагор... Великите цивилизации имат своите велики предшественици, които често остават неизвестни или подценени. Разбира се, и това е белег за автентичност -
+</p>
+
+<h3>Колкото по голяма е една истина, толкова повече усилия се правят за нейното премълчаване или преиначаване.</h3>
+
+<div class="p">
+   <div id="i0" class="image biche1">
+      <div id="l00" class="horizontal line" style="width: 221px; top: 28px;  right: 20px;"></div>
+      <div id="l01" class="horizontal line" style="width: 221px; top: 112px; right: 20px;"></div>
+      <div id="l02" class="horizontal line" style="width: 221px; top: 156px; right: 20px;"></div>
+
+      <div id="l03" class="horizontal line" style="width: 261px; top: 80px; right: 49px;"></div>
+      <div id="l04" class="horizontal line" style="width: 261px; top: 80px; right: 49px;"></div>
+      <script type="text/javascript">
+      $('#l03').rotate('90deg');
+      $('#l04').rotate('90deg');
+      $('#l04').animate({rotate: '100deg', right: '43px'});
+
+      wip_0_34 = false;
+      function rep_0_34(){
+        if(wip_0_34) return false;
+        wip_0_34 = true;
+
+        var e = $('#l04');
+        var a = e[0].cloneNode(false);
+        e[0].parentNode.appendChild(a);
+        a.style.top = '61px';
+        a.style.right = '43px';
+
+        $('#l04').rotate('90deg').css('right', '49px');
+        $('#l04').animate({rotate: '100deg', right: '43px'});
+        $(a).animate(
+          {opacity: 0},
+          {complete:
+            function(){
+               a.parentNode.removeChild(a);
+               wip_0_34 = false;
+            }
+          }
+        );
+      }
+
+      l0_scroll = 275; //+280
+      l0_before = window.onscroll;
+      l0_with   = function(){
+         var scrolled = document.body.scrollTop;
+         var grasp = (self.innerHeight)? self.innerHeight : ((document.documentElement && document.documentElement.clientHeight)? document.documentElement.clientHeight : ((document.body)? document.body.clientHeight : 1));
+
+         if(scrolled < l0_scroll && l0_scroll < (scrolled+grasp))
+            rep_0_34();
+      }
+
+      window.onscroll = function(){
+         if(l0_before) l0_before();
+         l0_with();
+      }
+      </script>
+      <span id="l0_12" class="label" style="bottom: 65px; left: 80px;" onmouseover="rep_0_34();">
+        <a>80.9</a>&deg;
+      </span>
+   </div>
+   <p>
+   Варненското злато носи научна информация в самата структура на артефактите си. Много от тях представят осмислените резултати от системни измервания. Използвани са еталони за числова, ъглова и линейна метрика.
+   </p>
+</div>
+
+<div class="p">
+   <div id="i1" class="image biche1">
+      <div id="l10" class="horizontal line" style="width: 221px; top: 28px;  right: 20px;"></div>
+      <div id="l11" class="horizontal line" style="width: 221px; top: 112px; right: 20px;"></div>
+      <div id="l12" class="horizontal line" style="width: 221px; top: 156px; right: 20px;"></div>
+
+      <div id="l13" class="horizontal line" style="width: 261px; top: 80px; right: 41px;"></div>
+      <div id="l14" class="horizontal line" style="width: 261px; top: 80px; right: 41px;"></div>
+      <script type="text/javascript">
+      $('#l13').rotate('90deg');
+      $('#l14').rotate('90deg');
+      $('#l14').animate({rotate: '100deg', right: '36px'});
+
+      wip_1_34 = false;
+      function rep_1_34(){
+        if(wip_1_34) return false;
+        wip_1_34 = true;
+
+        var e = $('#l14');
+        var a = e[0].cloneNode(false);
+        e[0].parentNode.appendChild(a);
+        a.style.top = '61px';
+        a.style.right = '36px';
+
+        $('#l14').rotate('90deg').css('right', '41px');
+        $('#l14').animate({rotate: '100deg', right: '36px'});
+        $(a).animate(
+          {opacity: 0},
+          {complete:
+            function(){
+               a.parentNode.removeChild(a);
+               wip_1_34 = false;
+            }
+          }
+        );
+      }
+
+      l1_scroll = 550;
+      l1_before = window.onscroll;
+      l1_with   = function(){
+         var scrolled = document.body.scrollTop;
+         var grasp = (self.innerHeight)? self.innerHeight : ((document.documentElement && document.documentElement.clientHeight)? document.documentElement.clientHeight : ((document.body)? document.body.clientHeight : 1));
+
+         if(scrolled < l1_scroll && l1_scroll < (scrolled+grasp))
+            rep_1_34();
+      }
+
+      window.onscroll = function(){
+         if(l1_before) l1_before();
+         l1_with();
+      }
+      </script>
+      <span id="l1_12" class="label" style="bottom: 65px; left: 87px;" onmouseover="rep_1_34();">
+        <a>80.9</a>&deg;
+      </span>
+   </div>
+   <p>
+   Числото 1,618, известно като числото на Фибоначи, заема централно място в логико-математическата система на знания отпреди 6500 години. То е своеобразна мерна единица за пропорционалност и при линейни, и про ъглови измервания.
+   </p>
+</div>
+
+<div class="p">
+   <div id="i2" class="image biche1">
+      <div id="l20" class="horizontal line" style="width: 221px; top: 28px;  right: 20px;"></div>
+      <div id="l21" class="horizontal line" style="width: 221px; top: 112px; right: 20px;"></div>
+      <div id="l22" class="horizontal line" style="width: 221px; top: 156px; right: 20px;"></div>
+
+      <div id="l23" class="horizontal line" style="width: 261px; top: 80px; right: 27px;"></div>
+      <div id="l24" class="horizontal line" style="width: 261px; top: 80px; right: 27px;"></div>
+      <script type="text/javascript">
+      $('#l23').rotate('90deg');
+      $('#l24').rotate('90deg');
+      $('#l24').animate({rotate: '80deg', right: '32px'});
+
+      wip_2_34 = false;
+      function rep_2_34(){
+        if(wip_2_34) return false;
+        wip_2_34 = true;
+
+        var e = $('#l24');
+        var a = e[0].cloneNode(false);
+        e[0].parentNode.appendChild(a);
+        a.style.top = '61px';
+        a.style.right = '32px';
+
+        $('#l24').rotate('90deg').css('right', '27px');
+        $('#l24').animate({rotate: '80deg', right: '32px'});
+        $(a).animate(
+          {opacity: 0},
+          {complete:
+            function(){
+               a.parentNode.removeChild(a);
+               wip_2_34 = false;
+            }
+          }
+        );
+      }
+
+      l2_scroll = 830; //+280
+      l2_before = window.onscroll;
+      l2_with   = function(){
+         var scrolled = document.body.scrollTop;
+         var grasp = (self.innerHeight)? self.innerHeight : ((document.documentElement && document.documentElement.clientHeight)? document.documentElement.clientHeight : ((document.body)? document.body.clientHeight : 1));
+
+         if(scrolled < l2_scroll && l2_scroll < (scrolled+grasp))
+            rep_2_34();
+      }
+
+      window.onscroll = function(){
+         if(l2_before) l2_before();
+         l2_with();
+      }
+      </script>
+      <span id="l2_12" class="label" style="bottom: 65px; left: 74px;" onmouseover="rep_2_34();">
+        <a>80.9</a>&deg;
+      </span>
+   </div>
+   <p>
+   Ще означим този числов еталон със символа &phi; (Фи) и ще покажем някои от приложенията му в културата Варна и в по-късната материална култура на Древения Египет. В резултат на така квантуваните измервания се получават, например характерни ъгли от 10&phi; = 16,18&deg;, 20&phi; = 32,36&deg;, 30&phi; = 48,54&deg;, 40&phi; = 64,72&deg;, 50&phi; = 80,90&deg;. Виждаме всички тези ъгли в структурата на един от златните еталони
+   </p>
+</div>
+
+<div class="p">
+   <div id="i3" class="image biche1">
+      <div id="l30" class="horizontal line" style="width: 221px; top: 28px;  right: 20px;"></div>
+      <div id="l31" class="horizontal line" style="width: 221px; top: 112px; right: 20px;"></div>
+      <div id="l32" class="horizontal line" style="width: 221px; top: 156px; right: 20px;"></div>
+
+      <div id="l33" class="horizontal line" style="width: 261px; top: 80px; right: 35px;"></div>
+      <div id="l34" class="horizontal line" style="width: 261px; top: 80px; right: 35px;"></div>
+      <script type="text/javascript">
+      $('#l33').rotate('90deg');
+      $('#l34').rotate('90deg');
+      $('#l34').animate({rotate: '80deg', right: '40px'});
+
+      wip_3_34 = false;
+      function rep_3_34(){
+        if(wip_3_34) return false;
+        wip_3_34 = true;
+
+        var e = $('#l34');
+        var a = e[0].cloneNode(false);
+        e[0].parentNode.appendChild(a);
+        a.style.top = '61px';
+        a.style.right = '40px';
+
+        $('#l34').rotate('90deg').css('right', '35px');
+        $('#l34').animate({rotate: '80deg', right: '40px'});
+        $(a).animate(
+          {opacity: 0},
+          {complete:
+            function(){
+               a.parentNode.removeChild(a);
+               wip_3_34 = false;
+            }
+          }
+        );
+      }
+
+      l3_scroll = 1110; //+280
+      l3_before = window.onscroll;
+      l3_with   = function(){
+         var scrolled = document.body.scrollTop;
+         var grasp = (self.innerHeight)? self.innerHeight : ((document.documentElement && document.documentElement.clientHeight)? document.documentElement.clientHeight : ((document.body)? document.body.clientHeight : 1));
+
+         if(scrolled < l3_scroll && l3_scroll < (scrolled+grasp))
+            rep_3_34();
+      }
+
+      window.onscroll = function(){
+         if(l3_before) l3_before();
+         l3_with();
+      }
+      </script>
+      <span id="l3_12" class="label" style="bottom: 65px; left: 66px;" onmouseover="rep_3_34();">
+        <a>80.9</a>&deg;
+      </span>
+   </div>
+   <p>
+   Особена роля играят ъглите от 50&phi; = 80,90&deg; и съответно 56&phi; = 90,60&deg;. В комплекта от две златни фигури на бичета виждаме как те могат да се изразят чрез структурни елементи на някои от златните еталони. И в много други артефакти от Варненския некропол са представени характерни геометрични и числови съотношения. Използваните ъгли и пропорции свидетелстват не само за художествена интуиция, но и за осмислянето на математични закономерности. Постепенното приближаване до точния прав ъгъл от 90&deg; минава през ъгъла от 55,62&phi;
+   </p>
+</div>
+
+<a href="index.html" class="fixed">Обратно</a>
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿<html>
+<head>
+	<title>Incrementals</title>
+	
+	<script type='text/javascript'>
+	//Defaults
+	var _start    = 0;
+	var _step     = 1;
+	var _interval = 50;
+	var _delay    = 0;
+	
+	//The preparing function
+	function prepare(elem){
+		elem.inc = new Object();
+		
+		elem.inc.start    = (elem.getAttribute('start'))?    elem.getAttribute('start')    : _start;
+		elem.inc.step     = (elem.getAttribute('step'))?     elem.getAttribute('step')     : _step;
+		elem.inc.interval = (elem.getAttribute('interval'))? elem.getAttribute('interval') : _interval;
+		elem.inc.delay    = (elem.getAttribute('delay'))?    elem.getAttribute('delay')    : _delay;
+		elem.inc.end      = parseInt(elem.innerHTML);
+		
+		if(elem.getAttribute('time')){
+			var time = elem.getAttribute('time');
+			
+			if(elem.inc.step != _step)
+				elem.inc.interval = (elem.inc.end - elem.inc.start) / elem.inc.step;
+			else
+				elem.inc.step = (elem.inc.end - elem.inc.start) / (time / elem.inc.interval);
+		}
+		
+		//The effective function
+		elem.inc.effect = function(){
+			if(elem.inc.index == null)
+				elem.innerHTML = Math.round(elem.inc.index = elem.inc.start);
+			else	
+				elem.innerHTML = Math.round( elem.inc.index = elem.inc.index -(- elem.inc.step ) );
+		}
+				
+		elem.inc.t = setTimeout( function(){
+			elem.inc.effect();
+			
+			if(elem.inc.index >= elem.inc.end)
+				return true;
+				
+			elem.inc.t = setTimeout( arguments.callee, elem.inc.interval );
+		}, elem.inc.interval-(-elem.inc.delay) );
+		
+		setTimeout(function(){alert(elem.inc.index/elem.inc.step);}, 3000);
+	}
+	
+	
+	//The gathering functions
+	window.onload = function(){
+		incs = getElementsByClassName('incremental');
+		
+		var i;
+		for(i=0; i<incs.length; i++)
+			prepare(incs[i]);
+	}
+	function getElementsByClassName(classname, node)  {
+		if(!node) node = document.getElementsByTagName("body")[0];
+		var a = [];
+		var re = new RegExp('\\b' + classname + '\\b');
+		var els = node.getElementsByTagName("*");
+		for(var i=0,j=els.length; i<j; i++)
+			if(re.test(els[i].className))a.push(els[i]);
+		return a;
+	}
+	</script>
+
+</head>
+<body>
+<!--
+<br /><span class="incremental">50</span>
+<br /><span class="incremental" start="5"      delay="3000" >40</span>
+<br /><span class="incremental" step ="5"      delay="5250">500</span>
+-->
+<br /><span class="incremental" time="3000"    >25</span>
+<!--delay="11750"
+<br /><span class="incremental" interval="150" delay="15000">5</span>
+-->
+<script type="text/javascript">  </script>
+</body>
+</html>
