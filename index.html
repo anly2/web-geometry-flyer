@@ -1,194 +1,192 @@
 ﻿<html>
 <head>
-	<title>Най-старата геометрия</title>
+   <title>Най-старата геометрия</title>
 
-	<script type="text/javascript" src="jQuery.js"></script>
-	<script type="text/javascript">
-	cr = new Array();
+   <script type="text/javascript" src="jQuery.js"></script>
+   <script type="text/javascript">
+   cr = new Array();
 
-	zooming = false;
-	function zoom(at, scale, time){
-	  if(zooming) return false;
-	  if(scale == null) scale = 2;
+   zooming = false;
+   function zoom(at, scale, time){
+     if(zooming) return false;
+     if(scale == null) scale = 2;
 
-	  //var b = document.body;
-	  var b = document.getElementById('content');
+     //var b = document.body;
+     var b = document.getElementById('content');
 
-	  if(!b.scale) b.scale = 1;
-	  b.fScale = scale;
+     if(!b.scale) b.scale = 1;
+     b.fScale = scale;
 
-	  if(cr.length == 0){
-		 cr[0] = Math.round($(document.body).width()/2);
-		 cr[1] = Math.round($(document.body).height()/2);
-	  }
+     if(cr.length == 0){
+       cr[0] = Math.round($(document.body).width()/2);
+       cr[1] = Math.round($(document.body).height()/2);
+     }
 
-	  var dir  = (scale-b.scale);
-	  var m = (dir>0)? scale : scale-1;
+     var dir  = (scale-b.scale);
+     var m = (dir>0)? scale : scale-1;
 
-	  var to = new Array();
-	  to[0] = (cr[0] - at[0])*m;
-	  to[1] = (cr[1] - at[1])*m;
+     var to = new Array();
+     to[0] = (cr[0] - at[0])*m;
+     to[1] = (cr[1] - at[1])*m;
 
-	  $(b).css('borderSpacing', 1);
+     $(b).css('borderSpacing', 1);
 
-	  zooming = true;
-	  $(b).animate(
-		 {
-			'left': to[0],
-			'top': to[1],
-			'borderSpacing': scale
-		 },
-		 {
-			duration: time,
-			step: function(now, fx){
-				if(fx.prop == 'borderSpacing'){
-				   $(this).css('transform', 'scale('+now+','+now+')');
-				   $(this).css('-ms-transform', 'scale('+now+','+now+')');
-				   $(this).css('-webkit-transform', 'scale('+now+','+now+')');
-				   $(this).css('-o-transform', 'scale('+now+','+now+')');
-				   $(this).css('-moz-transform', 'scale('+now+','+now+')');
-				}
+     zooming = true;
+     $(b).animate(
+       {
+         'left': to[0],
+         'top': to[1],
+         'borderSpacing': scale
+       },
+       {
+         duration: time,
+         step: function(now, fx){
+            if(fx.prop == 'borderSpacing'){
+               $(this).css('transform', 'scale('+now+','+now+')');
+               $(this).css('-ms-transform', 'scale('+now+','+now+')');
+               $(this).css('-webkit-transform', 'scale('+now+','+now+')');
+               $(this).css('-o-transform', 'scale('+now+','+now+')');
+               $(this).css('-moz-transform', 'scale('+now+','+now+')');
+            }
 
-				var hscroll = (document.all ? document.scrollLeft : window.pageXOffset);
-				var vscroll = (document.all ? document.scrollTop  : window.pageYOffset);
+            var hscroll = (document.all ? document.scrollLeft : window.pageXOffset);
+            var vscroll = (document.all ? document.scrollTop  : window.pageYOffset);
 
-				if(fx.prop == 'left'){
-					window.scrollTo(-now, vscroll);
-				}
-				if(fx.prop == 'top'){
-					window.scrollTo(hscroll, -now);
-				}
-			},
-			complete: function(){
-			   this.scale = this.fScale;
-			   setTimeout('zooming = false;', 0);
-			}
-		 }
-	  );
-	}
+            if(fx.prop == 'left'){
+               window.scrollTo(-now, vscroll);
+            }
+            if(fx.prop == 'top'){
+               window.scrollTo(hscroll, -now);
+            }
+         },
+         complete: function(){
+            this.scale = this.fScale;
+            setTimeout('zooming = false;', 0);
+         }
+       }
+     );
+   }
 
-	function getPosition(elem){
-	  var curleft,  curtop;
-		  curleft = curtop= 0;
+   function getPosition(elem){
+     var curleft,  curtop;
+        curleft = curtop= 0;
 
-	  if(elem.offsetParent)
-	  do{
-		 curleft += elem.offsetLeft;
-		 curtop  += elem.offsetTop;
-	  }while(elem = elem.offsetParent);
+     if(elem.offsetParent)
+     do{
+       curleft += elem.offsetLeft;
+       curtop  += elem.offsetTop;
+     }while(elem = elem.offsetParent);
 
-	  return [curleft,curtop];
-	}
+     return [curleft,curtop];
+   }
 
-	zoomed = false;
-	function czoom(){
-	  if(!zooming)
-		 if(!zoomed){
-			zoom( [810, 430], 4, 3000);
-			zoomed = true;
-		 }else{
-			zoom( [0,0] , 1, 3000);
-			zoomed = false;
-		 }
-	}
 
-	pScroll = [0,0]; //prevousScroll
-	window.onscroll = function(){
-		if(!zooming) window.scrollTo([pScroll[0], pScroll[1]]);
+   zoomed = false;
+   function czoom(){
+      at = getPosition(document.getElementById('zoomable'));
+      at[0] -= 30; //860
+      at[1] -= 85; //450
 
-		$('html,body').animate(
-			{
-				scrollLeft: (document.all ? document.scrollLeft : window.pageXOffset),
-				scrollTop: (document.all ? document.scrollTop  : window.pageYOffset)
-			}
-		, 1000);
+     if(!zooming)
+       if(!zoomed){
+         document.body.style.overflow = 'scroll';
+         zoom( at , 4, 3000);
+         zoomed = true;
+       }else{
+         document.body.style.overflow = 'hidden';
+         zoom( [0,0] , 1, 10);
+         zoomed = false;
+       }
+   }
 
-		//if(!zooming) window.scrollTo(0,0);
-	};
-	</script>
+   window.onload = function(){
+      scrollTo(0,0);
+      document.body.style.overflow = 'hidden';
+   };
+   </script>
 
-	<style type="text/css">
-	body{
-		margin: 50px 10%;
-	}
+   <style type="text/css">
+   body{
+      margin: 50px 10%;
+   }
 
-	.header{
-		margin: 15%;
-		text-align:center;
-		width: 800px;
-	}
-	.header .title{
-		font-family:Cambria;
-		font-style:italic;
-		font-size:120px;
-		color: #616161;
-	}
-	.header .title:first-line{
-		font-size:60px;
-	}
-	.header .inbound{
-		float:left;
-		width:200px;
-		font-size:20px;
-		text-align:right;
-	}
-	.header .post.script{
-		float:right;
-		width:350px;
-		font-size:40px;
-		text-align:left;
-	}
-	.header .credits{
-		text-align:right;
-		font-size:12px;
-		font-weight:bold;
-		color:#cdcdcd;
-	}
-	.header .credits:first-line{
-		font-weight:normal;
-	}
+   .header{
+      margin: 15%;
+      text-align:center;
+      width: 800px;
+   }
+   .header .title{
+      font-family:Cambria;
+      font-style:italic;
+      font-size:120px;
+      color: #616161;
+   }
+   .header .title:first-line{
+      font-size:60px;
+   }
+   .header .inbound{
+      float:left;
+      width:200px;
+      font-size:20px;
+      text-align:right;
+   }
+   .header .post.script{
+      float:right;
+      width:350px;
+      font-size:40px;
+      text-align:left;
+   }
+   .header .credits{
+      text-align:right;
+      font-size:12px;
+      font-weight:bold;
+      color:#cdcdcd;
+   }
+   .header .credits:first-line{
+      font-weight:normal;
+   }
 
-	#languages{
-		position: fixed;
-		right: 3%;
-		top: 3%;
-	}
-	#languages img{
-   	width: 20px;
-   	height: 15px;
-	}
-	#languages a:hover>img{
+   #languages{
+      position: fixed;
+      right: 3%;
+      top: 3%;
+   }
+   #languages img{
+      width: 20px;
+      height: 15px;
+   }
+   #languages a:hover>img{
       border: 2px solid #c0c0c0;
-	}
-	#languages img{
+   }
+   #languages img{
       border: 2px solid transparent;
-	}
-	</style>
-	<style type="text/css">
-	.navigation .box{
-		border-left: 2px dashed black;
-		border-right: 2px dashed black;
+   }
+   </style>
+   <style type="text/css">
+   .navigation .box{
+      border-left: 2px dashed black;
+      border-right: 2px dashed black;
 
-		vertical-align: middle;
-		text-align: center;
-	}
-	.navigation .box:hover{
-		background-color: #f6f6f6;
-	}
-	.navigation .box:first-line{
-		font-size: large;
-		font-weight: bold;
-	}
-	</style>
-	<style type="text/css">
-	a{
-		color: black;
-		text-decoration: none;
-	}
-	a:hover{
-		text-decoration: underline;
-	}
-	</style>
+      vertical-align: middle;
+      text-align: center;
+   }
+   .navigation .box:hover{
+      background-color: #f6f6f6;
+   }
+   .navigation .box:first-line{
+      font-size: large;
+      font-weight: bold;
+   }
+   </style>
+   <style type="text/css">
+   a{
+      color: black;
+      text-decoration: none;
+   }
+   a:hover{
+      text-decoration: underline;
+   }
+   </style>
 </head>
 <body>
 
@@ -200,56 +198,56 @@
 <div id="content">
 
 <div class="header">
-	<div class="inbound">
-		2000 години преди Хеопсовата пирамида и Стоунхендж
-	</div>
-	<div class="title">
-		Най-старата<br />
-		геометрия
-	</div>
-	<div class="post script">
-		се заражда по нашите земи
-	</div>
+   <div class="inbound">
+      2000 години преди Хеопсовата пирамида и Стоунхендж
+   </div>
+   <div class="title">
+      Най-старата<br />
+      геометрия
+   </div>
+   <div class="post script">
+      се заражда по нашите земи
+   </div>
 
-	<div class="credits" style="display:none;">
-		текст и илюстрации &nbsp; &nbsp; <br />
-		Христо Смоленов, &nbsp; &nbsp; <br />
-		Христо Михайлов, &nbsp; &nbsp; <br />
-		Владимир Божилов &nbsp; &nbsp; <br />
-	</div>
+   <div class="credits" style="display:none;">
+      текст и илюстрации &nbsp; &nbsp; <br />
+      Христо Смоленов, &nbsp; &nbsp; <br />
+      Христо Михайлов, &nbsp; &nbsp; <br />
+      Владимир Божилов &nbsp; &nbsp; <br />
+   </div>
 </div>
 
 <div class="navigation">
-	<table width="100%" height="100" border="0">
-		<tr>
-			<td width="10%"></td>
+   <table width="100%" height="100" border="0">
+      <tr>
+         <td width="10%"></td>
 
-			<td class="box" width="20%" onclick="window.location.href='prelude.html';">
-				<a href="prelude.html">Предистория</a>
-			</td>
+         <td class="box" width="20%" onclick="window.location.href='prelude.html';">
+            <a href="prelude.html">Предистория</a>
+         </td>
 
-			<td width="10%"></td>
+         <td width="10%"></td>
 
-			<td class="box" width="20%" onclick="window.location.href='analyze.html';">
-				<a href="analyze.html">Анализ</a>
-			</td>
+         <td class="box" width="20%" onclick="window.location.href='analyze.html';">
+            <a href="analyze.html">Анализ</a>
+         </td>
 
-			<td width="10%"></td>
+         <td width="10%"></td>
 
-			<td class="box" width="20%" onclick="czoom();">
-				Приложения:
-				<br /><a href="stonehenge.html">Стоунхендж</a>
-				<br /><a href="pyramids.html"  >Пирамидите в Гиза</a>
-				<br /><a href="pythagoras.html">Питагоровия триъгълник</a>
-			</td>
+         <td id="zoomable" class="box" width="20%" onclick="czoom();">
+            Приложения:
+            <br /><a href="stonehenge.html">Стоунхендж</a>
+            <br /><a href="pyramids.html"  >Пирамидите в Гиза</a>
+            <br /><a href="pythagoras.html">Питагоровия триъгълник</a>
+         </td>
 
-			<td width="10%"></td>
-		</tr>
-	</table>
+         <td width="10%"></td>
+      </tr>
+   </table>
 </div>
 
 
-<div id="scroll:enable" style="width:2000px; height:100px"></div>
+<div id="scroll:enable" style="width:113%; height:31%;"></div>
 </div>
 </body>
 </html>
